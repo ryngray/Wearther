@@ -46,7 +46,7 @@
 	<div>
 		<?php
 		htmlspecialchars($_SERVER["PHP_SELF"]);
-		if(S_SERVER["PHP_SELF"]){
+		if($_SERVER["PHP_SELF"]){
 		if($_SESSION["tester"]!=1){
 			$_SESSION["tester"]=1;
 			$_SESSION["coatArray"]=null;
