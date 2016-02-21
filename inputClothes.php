@@ -116,7 +116,7 @@ $counter = $_COOKIE['counter'];
    $descrip=null;
    ?>
  </div>
- <form method="post" action="index.php">
+ <form method="post" action="input.php">
 
     <button type = "submit" id="button" style= "color: #cc99ff; background-color: #0066ff; opacity: 0.5;" >
       Return to Lat/Long

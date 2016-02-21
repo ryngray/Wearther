@@ -94,12 +94,12 @@ setcookie("counter", $counter, time()+3600, '/');
 
  </form>
  </div>
- <form method="post" action="inputClothes.php">
+<!-- <form method="post" action="input.php">
 
     <button formaction="inputClothes.php" type = "submit"  style= "color: #cc99ff; background-color: #0066ff; opacity: 0.5;" >
 			Enter jackets:
 		</button>
- </form>
+ </form>-->
 
 </body>
 

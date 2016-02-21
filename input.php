@@ -54,7 +54,6 @@ for($nn=0; $nn<$counter; $nn++){
     $lessthanzero[$next]=$arr[0];
   }if($tr=="0to40"){
     echo "0 to 40".'<br>';
-
     if($zerotoforty!=null)
 		$next=count($zerotoforty);
 	else
@@ -62,12 +61,10 @@ for($nn=0; $nn<$counter; $nn++){
     $zerotoforty[$next]=$arr[0];
   }if($tr=="40to60"){
     echo "40 to 60".'<br>';
-
    if($fortytosixty!=null)
 		$next=count($fortytosixty);
 	else
 		$next=0;
-
     $fortytosixty[$next]=$arr[0];
   }
   if($tr=="60to80"){
@@ -95,8 +92,6 @@ function test_input($data)
 }
 //var_dump($_POST);
 //if(isset($_POST['lat'])&&isset($_POST['lon'])){
-
-
 $lat = $_SESSION['lat'];
 $lon = $_SESSION['lon'];
 //}
