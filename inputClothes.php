@@ -51,7 +51,7 @@ unset($_POST);
    ?>
    <div id="instruct"> Please select a range of temperatures. </div>
 <form method = "post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-  <input type="radio" name="temp" value="<-10"> less than -10 degrees F<br>
+  <input type="radio" name="temp" value="<0"> less than 0 degrees F<br>
   <input type="radio" name="temp" value="0to40"> 0->40 degrees F<br>
   <input type="radio" name="temp" value="40to60"> 40->60 degrees F<br>
   <input type="radio" name="temp" value="60to80"> 60->80 degrees F<br>
@@ -100,6 +100,10 @@ unset($_POST);
   //echo $coatArray[0][0];
 
  ?>
+ <form method="post" action="resetClothes.php">
+   <button type="submit">
+     Reset </Button>
+   </form>
  <div id="coatList">
    <h1> Exisiting Clothing: </h1>
    <div id="desc"> Description: || Temperature range: </div>
