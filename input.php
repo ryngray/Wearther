@@ -133,7 +133,7 @@ for( $m=0; $m<8; $m++){
        echo "Your appropriate coats:".'<br>';
        for($ab=0; $ab<count($zerotoforty); $ab++){
          echo $zerotoforty[$ab];
-         if($ab!=count($lessthanzero)-1){
+         if($ab!=count($zerotoforty)-1){
            echo ", ";
          }
          else {
@@ -149,7 +149,7 @@ for( $m=0; $m<8; $m++){
        echo "Your appropriate coats:".'<br>';
        for($ac=0; $ac<count($fortytosixy); $ac++){
          echo $fortytosixy[$ac];
-         if($ac!=count($lessthanzero)-1){
+         if($ac!=count($fortytosixty)-1){
            echo ", ";
          }
          else {
