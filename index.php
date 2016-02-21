@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php session_start(); 
+$LatvsLon=array(null, null);
+setcookie("test_cookie", serialize($LatvsLon), time()+3600, '/');
+$counter = 0;
+setcookie("counter", $counter, time()+3600, '/');
+?>
 
 
 <!DOCTYPE html>
@@ -36,7 +41,6 @@
 			top: 60%;
 			left: 45%;
 		}
-
 	</style>
 	</header>
 
@@ -46,12 +50,15 @@
 	<div>
 		<?php
 		htmlspecialchars($_SERVER["PHP_SELF"]);
-		if($_SERVER["PHP_SELF"]){
-		if($_SESSION["tester"]!=1){
+		//$_SESSION["counter"]=0;
+		//echo "COUNTER: ".$_SESSION["counter"];
+		//if($_SESSION["tester"]!=1){
 			$_SESSION["tester"]=1;
 			$_SESSION["coatArray"]=null;
-			$_SESSION["counter"]=0;
-		}
+			//$_SESSION["counter"]=0;
+		//}
+		if($_SERVER["PHP_SELF"]){
+			
 		$_SESSION["lat"]=null;
 		$_SESSION["lon"]=null;
 		  if(empty($_POST['lat'])){
@@ -65,10 +72,9 @@
 		  }
 		  else{
 				$_SESSION["lon"]= $_POST['lon'];
-
 		  }
 			if($_SESSION["lat"]!=null&&$_SESSION["lon"]!=null){
-				header('Location: http://localhost/my_site/input.php');
+				header('Location:http://localhost/my_site/wearther/input.php');
 				die;
 			}
 		  function test_input($data) {

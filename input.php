@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php session_start(); 
+	//setcookie("test_cookie", $_COOKIE('test_cookie'), time() + 3600, '/');
+
+?>
 
 <html>
 <header>
@@ -23,6 +26,17 @@
 <?php
 /*ignore this, for the later file*/
 //echo "ARRAY ".$_SESSION["coatArray"][0]." COUNTER: ".$_SESSION["counter"];
+htmlspecialchars($_SERVER["PHP_SELF"]);
+$lat = "40.02";
+$lon = "-105.28";
+/*if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+	//$lat = test_input($_POST['lat']);
+	//$lon = test_input($_POST['lon']);
+	//echo $lat;
+	//echo $lon;
+}*/
+
 $lessthanzero=null;
 $zerotoforty=null;
 $fortytosixty=null;
@@ -34,36 +48,46 @@ for($nn=0; $nn<$_SESSION["counter"]; $nn++){
   //echo "Temp range: ".$tr.'<br>';
   if($tr=="<0"){
     echo "Less than zero".'<br>';
-    $next=count($lessthanzero);
+	if($lessthanzero!=null)
+		$next=count($lessthanzero);
+	else
+		$next=0;
     $lessthanzero[$next]=$arr[0];
   }if($tr=="0to40"){
     echo "0 to 40".'<br>';
-    $next=count($zerotoforty);
+	
+    if($zerotoforty!=null)
+		$next=count($zerotoforty);
+	else
+		$next=0;
     $zerotoforty[$next]=$arr[0];
   }if($tr=="40to60"){
     echo "40 to 60".'<br>';
-    $next=count($fortytosixy);
-    $fortytosixy[$next]=$arr[0];
+	
+   if($fortytosixty!=null)
+		$next=count($fortytosixty);
+	else
+		$next=0;
+	
+    $fortytosixty[$next]=$arr[0];
   }
   if($tr=="60to80"){
     echo "60 to 80".'<br>';
-    $next=count($sixtytoeighty);
+	if($sixtytoeighty!=null)
+		$next=count($sixtytoeighty);
+	else
+		$next=0;
     $sixtytoeighty[$next]=$arr[0];
   }if($tr=="80+"){
     echo "80 +".'<br>';
-    $next=count($eightyplus);
+    if($eightyplus!=null)
+		$next=count($eightyplus);
+	else
+		$next=0;
     $eightyplus[$next]=$arr[0];
   }
 }
-/*htmlspecialchars($_SERVER["PHP_SELF"]);
-$lat = $lon = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST")
-{
-	$lat = test_input($_POST['lat']);
-	$lon = test_input($_POST['lon']);
-	//echo $lat;
-	//echo $lon;
-}*/
+
 function test_input($data)
 {
 	$data = trim($data);
@@ -72,8 +96,18 @@ function test_input($data)
 	return $data;
 }
 //var_dump($_POST);
-$lat = $_SESSION["lat"];
+//if(isset($_POST['lat'])&&isset($_POST['lon'])){
+	
+	
+$lat = $_SESSION['lat'];
 $lon = $_SESSION['lon'];
+
+
+//}
+$LatvsLon = unserialize($_COOKIE['test_cookie']);
+$LatvsLon[0] = $lat;
+$LatvsLon[1] = $lon;
+setcookie("test_cookie", serialize($LatvsLon), time()+3600, '/');
 //echo $lat;
 //echo $lon;
 $url="http://forecast.weather.gov/MapClick.php?lat=".$lat."&lon=".$lon."&FcstType=json";
@@ -107,7 +141,7 @@ for( $m=0; $m<8; $m++){
      echo '<id = "day"><b>'.$endArray[$m][$r]."</b><br>";
    }
    if($r == 1){
-     echo $tempId[$m], ": ";
+    echo $tempId[$m], ": ";
      echo '<id = "temperature">'.$endArray[$m][$r]."<br>";
      $currTemp=$endArray[$m][$r];
      if($currTemp<=0){
@@ -147,8 +181,8 @@ for( $m=0; $m<8; $m++){
 	   if($fortytosixty!=null){
        echo "****".'<br>';
        echo "Your appropriate coats:".'<br>';
-       for($ac=0; $ac<count($fortytosixy); $ac++){
-         echo $fortytosixy[$ac];
+       for($ac=0; $ac<count($fortytosixty); $ac++){
+         echo $fortytosixty[$ac];
          if($ac!=count($fortytosixty)-1){
            echo ", ";
          }
@@ -165,7 +199,7 @@ for( $m=0; $m<8; $m++){
        echo "Your appropriate coats:".'<br>';
        for($ad=0; $ad<count($sixtytoeighty); $ad++){
          echo $sixtytoeighty[$ad];
-         if($ad!=count($lessthanzero)-1){
+         if($ad!=count($sixtytoeighty)-1){
            echo ", ";
          }
          else {
