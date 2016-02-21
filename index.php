@@ -42,7 +42,6 @@ $counter = $_COOKIE['count'];
 			top: 60%;
 			left: 45%;
 		}
-
 	</style>
 	</header>
 
@@ -55,7 +54,6 @@ $counter = $_COOKIE['count'];
 		$_SESSION["tester"]=1;
 		$_SESSION["coatArray"]=null;-->*/
 		//$counter=0;
-
 		//echo "ARRAY".$_SESSION["coatArray"][0]." COUNTER: ".$_SESSION["counter"];
 ?>
  <form method="post" action="input.php" name="weather">
@@ -67,7 +65,6 @@ $counter = $_COOKIE['count'];
  </form>
  </div>
  <!--<form method="post" action="inputClothes.php">
-
     <button formaction="inputClothes.php" type = "submit"  style= "color: #cc99ff; background-color: #0066ff; opacity: 0.5;" >
 			Enter jackets:
 		</button>
