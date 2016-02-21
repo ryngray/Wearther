@@ -45,6 +45,8 @@
 	<hr>
 	<div>
 		<?php
+		htmlspecialchars($_SERVER["PHP_SELF"]);
+		if(S_SERVER["PHP_SELF"]){
 		if($_SESSION["tester"]!=1){
 			$_SESSION["tester"]=1;
 			$_SESSION["coatArray"]=null;
@@ -75,6 +77,7 @@
 		   $data = htmlspecialchars($data);
 		   return $data;
 		}
+	}
 		//echo "ARRAY".$_SESSION["coatArray"][0]." COUNTER: ".$_SESSION["counter"];
 ?>
  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="weather">
