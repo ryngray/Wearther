@@ -1,3 +1,6 @@
+<?php session_start(); ?>
+
+
 <!DOCTYPE html>
 <html>
 <header>
@@ -6,8 +9,8 @@
 	<style>
 		body {
 			background: url(http://vectorandpsd.com/vectorandpsd/background/blue-poly-background.jpg);
-			background-size: 100% 100%;
-			background-repeat: no-repeat;
+	    background-size: cover 100%;
+	    background-repeat: no-repeat;
 			}
 		h1 {
 			text-align: center;
@@ -41,7 +44,11 @@
 	<h1><b><i>To Wear or Not to Wear, that is the Question!</b></i></h1>
 	<hr>
 	<div>
- <form method="post" action="input.php">
+		<?php $_SESSION["coatArray"]=null;
+		$_SESSION["counter"]=0;
+		//echo "ARRAY".$_SESSION["coatArray"][0]." COUNTER: ".$_SESSION["counter"];
+?>
+ <form method="post" action="input.php" name="weather">
 
      Latitude: <input type="text" name="lat" size = "12"/><br>
      Longitude: <input type = "text" name = "lon" size = "10"/><br>
@@ -49,6 +56,13 @@
 
  </form>
  </div>
+ <form method="post" action="inputClothes.php">
+
+    <button formaction="inputClothes.php" type = "submit"  style= "color: #cc99ff; background-color: #0066ff; opacity: 0.5;" >
+			Enter jackets:
+		</button>
+ </form>
+
 </body>
 
 

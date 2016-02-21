@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <html>
 <header>
   <title>Wearther or Not </title>
@@ -5,14 +7,25 @@
 <style>
   body {
     background: url(http://vectorandpsd.com/vectorandpsd/background/blue-poly-background.jpg);
-    background-size: 100% 100%;
+    background-size: cover 100%;
     background-repeat: no-repeat;
+    }
+    #day{
+
     }
     </style>
   	</header>
   	<body>
+      <form method="post" action="index.php">
+        Enter a new latitude and longitude:
+     		 <input type = "submit" id="button" style= "color: #cc99ff; background-color: #0066ff; opacity: 0.5;" >
 
+      </form>
 <?php
+/*ignore this, for the later file*/
+
+
+//echo "ARRAY ".$_SESSION["coatArray"][0]." COUNTER: ".$_SESSION["counter"];
 
 htmlspecialchars($_SERVER["PHP_SELF"]);
 $lat = $lon = "";
@@ -68,7 +81,7 @@ for($i = 0; $i < 14; $i++){
 for( $m=0; $m<8; $m++){
  for($r=0; $r<10; $r++){
    if($r == 0){
-     echo '<id = "day">'.$endArray[$m][$r]."<br>";
+     echo '<id = "day"><b>'.$endArray[$m][$r]."</b><br>";
    }
    if($r == 1){
      echo $tempId[$m], ": ";
@@ -102,5 +115,11 @@ for( $m=0; $m<8; $m++){
 }
 
 ?>
+
+<form method="post" action="inputClothes.php">
+  Enter jackets:
+   <input type = "submit" id="button" style= "color: #cc99ff; background-color: #0066ff; opacity: 0.5;" >
+
+</form>
 </body>
 </html>
