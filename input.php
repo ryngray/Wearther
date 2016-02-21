@@ -1,6 +1,6 @@
-<?php session_start(); 
+<?php session_start();
+  $counter = $_COOKIE['counter'];
 	//setcookie("test_cookie", $_COOKIE('test_cookie'), time() + 3600, '/');
-
 ?>
 
 <html>
@@ -36,13 +36,12 @@ $lon = "-105.28";
 	//echo $lat;
 	//echo $lon;
 }*/
-
 $lessthanzero=null;
 $zerotoforty=null;
 $fortytosixty=null;
 $sixtytoeighty=null;
 $eightyplus=null;
-for($nn=0; $nn<$_SESSION["counter"]; $nn++){
+for($nn=0; $nn<$counter; $nn++){
   $arr=$_SESSION["coatArray"][$nn];
   $tr=$arr[1];
   //echo "Temp range: ".$tr.'<br>';
@@ -55,7 +54,7 @@ for($nn=0; $nn<$_SESSION["counter"]; $nn++){
     $lessthanzero[$next]=$arr[0];
   }if($tr=="0to40"){
     echo "0 to 40".'<br>';
-	
+
     if($zerotoforty!=null)
 		$next=count($zerotoforty);
 	else
@@ -63,12 +62,12 @@ for($nn=0; $nn<$_SESSION["counter"]; $nn++){
     $zerotoforty[$next]=$arr[0];
   }if($tr=="40to60"){
     echo "40 to 60".'<br>';
-	
+
    if($fortytosixty!=null)
 		$next=count($fortytosixty);
 	else
 		$next=0;
-	
+
     $fortytosixty[$next]=$arr[0];
   }
   if($tr=="60to80"){
@@ -87,7 +86,6 @@ for($nn=0; $nn<$_SESSION["counter"]; $nn++){
     $eightyplus[$next]=$arr[0];
   }
 }
-
 function test_input($data)
 {
 	$data = trim($data);
@@ -97,12 +95,10 @@ function test_input($data)
 }
 //var_dump($_POST);
 //if(isset($_POST['lat'])&&isset($_POST['lon'])){
-	
-	
+
+
 $lat = $_SESSION['lat'];
 $lon = $_SESSION['lon'];
-
-
 //}
 $LatvsLon = unserialize($_COOKIE['test_cookie']);
 $LatvsLon[0] = $lat;
