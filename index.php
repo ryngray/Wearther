@@ -1,8 +1,9 @@
-<?php session_start(); 
-$LatvsLon=array(null, null);
+<?php //session_start();
+$LatvsLon = array(null, null);
 setcookie("test_cookie", serialize($LatvsLon), time()+3600, '/');
 $counter = 0;
-setcookie("counter", $counter, time()+3600, '/');
+setcookie("count", $counter, time()+3600, '/');
+$counter = $_COOKIE['count'];
 ?>
 
 
@@ -41,6 +42,7 @@ setcookie("counter", $counter, time()+3600, '/');
 			top: 60%;
 			left: 45%;
 		}
+
 	</style>
 	</header>
 
@@ -49,44 +51,14 @@ setcookie("counter", $counter, time()+3600, '/');
 	<hr>
 	<div>
 		<?php
-		htmlspecialchars($_SERVER["PHP_SELF"]);
-		//$_SESSION["counter"]=0;
-		//echo "COUNTER: ".$_SESSION["counter"];
-		//if($_SESSION["tester"]!=1){
-			$_SESSION["tester"]=1;
-			$_SESSION["coatArray"]=null;
-			//$_SESSION["counter"]=0;
-		//}
-		if($_SERVER["PHP_SELF"]){
-			
-		$_SESSION["lat"]=null;
-		$_SESSION["lon"]=null;
-		  if(empty($_POST['lat'])){
-		    echo "Please enter a latitude.".'<br>';
-		  }
-		  else{
-		    $_SESSION["lat"] = $_POST['lat'];
-		  }
-		  if(empty($_POST['lon'])){
-		    echo "Please enter a longitude.".'<br>';
-		  }
-		  else{
-				$_SESSION["lon"]= $_POST['lon'];
-		  }
-			if($_SESSION["lat"]!=null&&$_SESSION["lon"]!=null){
-				header('Location:http://localhost/my_site/wearther/input.php');
-				die;
-			}
-		  function test_input($data) {
-		   $data = trim($data);
-		   $data = stripslashes($data);
-		   $data = htmlspecialchars($data);
-		   return $data;
-		}
-	}
+		/*if($_SESSION["tester"]!=1){
+		$_SESSION["tester"]=1;
+		$_SESSION["coatArray"]=null;-->*/
+		//$counter=0;
+
 		//echo "ARRAY".$_SESSION["coatArray"][0]." COUNTER: ".$_SESSION["counter"];
 ?>
- <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="weather">
+ <form method="post" action="input.php" name="weather">
 
      Latitude: <input type="text" name="lat" size = "12"/><br>
      Longitude: <input type = "text" name = "lon" size = "10"/><br>
@@ -94,12 +66,12 @@ setcookie("counter", $counter, time()+3600, '/');
 
  </form>
  </div>
-<!-- <form method="post" action="input.php">
+ <!--<form method="post" action="inputClothes.php">
 
     <button formaction="inputClothes.php" type = "submit"  style= "color: #cc99ff; background-color: #0066ff; opacity: 0.5;" >
 			Enter jackets:
 		</button>
- </form>-->
+ </form> -->
 
 </body>
 
