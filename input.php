@@ -26,6 +26,39 @@
 
 
 //echo "ARRAY ".$_SESSION["coatArray"][0]." COUNTER: ".$_SESSION["counter"];
+$lessthanzero;
+$zerotoforty;
+$fortytosixty;
+$sixtytoeighty;
+$eightyplus;
+for($nn=0; $nn<$_SESSION["counter"]; $nn++){
+  $arr=$_SESSION["coatArray"][$nn];
+  $tr=$arr[1];
+  //echo "Temp range: ".$tr.'<br>';
+  if($tr=="<0"){
+    echo "Less than zero".'<br>';
+    $next=count($lessthanzero);
+    $lessthanzero[$next]=$arr[0];
+  }if($tr=="0to40"){
+    echo "0 to 40".'<br>';
+    $next=count($zerotoforty);
+    $zerotoforty[$next]=$arr[0];
+  }if($tr=="40to60"){
+    echo "40 to 60".'<br>';
+    $next=count($fortytosixy);
+    $fortytosixy[$next]=$arr[0];
+  }
+  if($tr=="60to80"){
+    echo "60 to 80".'<br>';
+    $next=count($sixtytoeighty);
+    $sixtytoeighty[$next]=$arr[0];
+  }if($tr=="80+"){
+    echo "80 +".'<br>';
+    $next=count($eightyplus);
+    $eightyplus[$next]=$arr[0];
+  }
+
+}
 
 htmlspecialchars($_SERVER["PHP_SELF"]);
 $lat = $lon = "";
@@ -47,8 +80,8 @@ function test_input($data)
 
 //var_dump($_POST);
 
-$lat = $_POST['lat'];
-$lon = $_POST['lon'];
+$lat = $_SESSION["lat"];
+$lon = $_SESSION['lon'];
 //echo $lat;
 //echo $lon;
 
@@ -86,17 +119,80 @@ for( $m=0; $m<8; $m++){
    if($r == 1){
      echo $tempId[$m], ": ";
      echo '<id = "temperature">'.$endArray[$m][$r]."<br>";
-     if($endArray[$m][$r]<30){
-       echo "wear a heavy coat"."<br>";
+     $currTemp=$endArray[$m][$r];
+     if($currTemp<=0){
+       echo "Wear a heavy coat"."<br>";
+       echo "****".'<br>';
+       echo "Your appropriate coats:".'<br>';
+       for($aa=0; $aa<count($lessthanzero); $aa++){
+         echo $lessthanzero[$aa];
+         if($aa!=count($lessthanzero)-1){
+           echo ", ";
+         }
+         else {
+           echo ""."<br>";
+         }
+       }
      }
-     elseif($endArray[$m][$r]<50){
+     elseif($currTemp>0&&$currTemp<=40){
        echo "wear a jacket"."<br>";
+       echo "****".'<br>';
+
+       echo "Your appropriate coats:".'<br>';
+       for($ab=0; $ab<count($zerotoforty); $ab++){
+         echo $zerotoforty[$ab];
+         if($ab!=count($lessthanzero)-1){
+           echo ", ";
+         }
+         else {
+           echo ""."<br>";
+         }
+       }
      }
-     elseif($endArray[$m][$r]<60){
+     elseif($currTemp>40&&$currTemp<=60){
        echo "wear a light jacket"."<br>";
+       echo "****".'<br>';
+
+       echo "Your appropriate coats:".'<br>';
+       for($ac=0; $ac<count($fortytosixy); $ac++){
+         echo $fortytosixy[$ac];
+         if($ac!=count($lessthanzero)-1){
+           echo ", ";
+         }
+         else {
+           echo ""."<br>";
+         }
+       }
+     }
+     elseif($currTemp>60&&$currTemp<=80){
+       echo "It's pretty warm"."<br>";
+       echo "****".'<br>';
+
+       echo "Your appropriate coats:".'<br>';
+       for($ad=0; $ad<count($sixtytoeighty); $ad++){
+         echo $sixtytoeighty[$ad];
+         if($ad!=count($lessthanzero)-1){
+           echo ", ";
+         }
+         else {
+           echo ""."<br>";
+         }
+       }
      }
      else{
-       echo "It's pretty warm"."<br>";
+       echo "It's hot out."."<br>";
+       echo "****".'<br>';
+
+       echo "Your appropriate coats:".'<br>';
+       for($ae=0; $ae<count($eightyplus); $ae++){
+         echo $eightyplus[$ae];
+         if($ae!=count($lessthanzero)-1){
+           echo ", ";
+         }
+         else {
+           echo ""."<br>";
+         }
+       }
      }
    }
    if($r == 2){
